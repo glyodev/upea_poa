@@ -190,7 +190,7 @@
                                     value="{{ $configuracion_poa->id }}">
                                 <input type="hidden" name="gestiones_id" value="{{ $gestiones->id }}">
                                 <div class="mb-3 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                    <fieldset>
+                                    <fieldset id="drector">
                                         <legend>Ingrese nombre de la Maxima Autoridad (RECTOR)</legend>
                                         <input type="text" name="maxima_autoridad" id="maxima_autoridad"
                                             class="form-control"
@@ -199,7 +199,7 @@
                                     </fieldset>
                                 </div>
                                 <div class="mb-3 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                    <fieldset>
+                                    <fieldset id="dareas">
                                         <legend>Seleccione las Áreas estratégicas a usar</legend>
                                         <table class="table text-justify">
                                             <tbody>
@@ -227,7 +227,7 @@
                             </form>
 
                             <div class="text-center">
-                                <button type="button" class="btn btn-outline-primary btn-sm"
+                                <button type="button" class="btn btn-outline-primary btn-sm dguardar"
                                     id="btn_guardarPrimerFormulario"> <i class="bx bxs-save" id="icono_rodry"></i>
                                     Guardar primer formulario</button>
                             </div>
@@ -252,7 +252,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger btn-sm"
                             data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-primary btn-sm" id="btn_guardarFormuladoEditar"> <i
+                        <button type="button" class="btn btn-outline-primary btn-sm dguardar" id="btn_guardarFormuladoEditar"> <i
                                 class="bx bxs-save" id="icono_rodry"></i> Guardar primer formulario</button>
                     </div>
                 </div>

@@ -178,7 +178,7 @@
 
                         <ul class="sidemenu-nav-second-level">
                             @can('formulacion_poa')
-                                <li class=" @if ($menu == '13') {{ 'active' }} @endif ">
+                                <li class=" @if ($menu == '13') {{ 'active' }} @endif " id="menu-poa">
                                     <a href="{{ route('poa_formulacion') }}">
                                         <span class="menu-title">Formulación <br> del Plan <br> Operativo Anual</span>
                                     </a>

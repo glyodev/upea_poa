@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="{{ asset('plantilla_admin/rodry/select2/css/select2.min.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('plantilla_admin/rodry/select2/css/select2-bootstrap-5-theme.min.css') }}"
     type="text/css">
+<link rel="stylesheet" href="{{ asset('plantilla_admin/css/driver.css') }}" type="text/css">
 
 
 <!-- Styles -->

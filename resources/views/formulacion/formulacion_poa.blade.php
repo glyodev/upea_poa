@@ -34,7 +34,7 @@
                         </fieldset>
                     </div> --}}
                     <div class="mb-3 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto">
-                        <fieldset>
+                        <fieldset id="gestion_drive">
                             <legend>Seleccione una gestión especifica</legend>
                             <select name="gestiones" id="gestiones" class="form-select"
                                 onchange="listar_gestionesAsignacionForm(this.value)">
@@ -100,6 +100,34 @@
                     document.getElementById('ListadoGestionesFormulados').innerHTML = data;
                 }
             });
+        }
+
+        $('#btn-driver').css('style', 'display:block')
+        function verTutorial() {
+            driverObj.setSteps([{
+                    element: '#menu-poa',
+                    popover: {
+                        title: 'Opción de formulación del POA',
+                        description: 'Funcionamiento del menú de formulación del Plan Operativo Anual'
+                    }
+                },
+                {
+                    element: '#gestion_drive',
+                    popover: {
+                        title: 'Listado de las gestiones habilitadas',
+                        description: 'Se lista todas las gestiones que se encuentran habilitadas para formulación del POA'
+                    },
+                },
+                {
+                    element: '#ListadoGestionesFormulados',
+                    popover: {
+                        title: 'Formulador de la gestión',
+                        description: 'Aca se muestran los formulados y/o reformulados habilitados de la gestión seleccionada.'
+                    }
+                },
+            ])
+
+            driverObj.drive()
         }
     </script>
 @endsection

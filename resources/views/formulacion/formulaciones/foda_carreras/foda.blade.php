@@ -16,8 +16,8 @@
         </div>
     </div>
 
-    <div class="tabs-wrap">
-        <nav class="tabs-button">
+    <div class="tabs-wrap" id="dmodulo">
+        <nav class="tabs-button" id="dnav">
             <div class="nav nav-tabs" role="tablist">
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#fortaleza_c" type="button"
                     role="tab" aria-selected="true">
@@ -56,16 +56,18 @@
                             <input type="hidden" name="id_carreraunidad" value="{{ $carrera->id }}">
                             <input type="hidden" name="id_configuracion" value="{{ $configuracion_formulado->id }}">
                             <input type="hidden" name="id_gestion" value="{{ $gestiones->id }}">
-                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#nuevo_carreraUnidadArea"><i class="ri-file-pdf-line"></i> Imprimir
-                                PDF</button>
+                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal" id="dpdf"
+                                data-bs-target="#nuevo_carreraUnidadArea">
+                                <i class="ri-file-pdf-line"></i>
+                                Imprimir PDF
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="tabs-content">
+        <div class="tabs-content" id="dinfo">
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="fortaleza_c" role="tabpanel">
                     <div class="default-table-area">
@@ -74,8 +76,8 @@
                                 <div class="others-title d-flex align-items-center">
                                     <h3>FORTALEZAS</h3>
                                     <div class=" ms-auto position-relative">
-                                        <button type="button" class="btn btn-outline-primary" onclick="abrir_modal()"> <i
-                                                class="bx bxs-add-to-queue"></i> Nueva Foda</button>
+                                        <button type="button" class="btn btn-outline-primary dnuevo"
+                                            onclick="abrir_modal()"> <i class="bx bxs-add-to-queue"></i> Nueva Foda</button>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -101,8 +103,8 @@
                                 <div class="others-title d-flex align-items-center">
                                     <h3>OPORTUNIDADES</h3>
                                     <div class=" ms-auto position-relative">
-                                        <button type="button" class="btn btn-outline-primary" onclick="abrir_modal()"> <i
-                                                class="bx bxs-add-to-queue"></i> Nuevo Foda</button>
+                                        <button type="button" class="btn btn-outline-primary dnuevo"
+                                            onclick="abrir_modal()"> <i class="bx bxs-add-to-queue"></i> Nuevo Foda</button>
                                     </div>
                                 </div>
                                 <div id="table-responsive">
@@ -128,7 +130,8 @@
                                 <div class="others-title d-flex align-items-center">
                                     <h3>DEBILIDADES</h3>
                                     <div class=" ms-auto position-relative">
-                                        <button type="button" class="btn btn-outline-primary" onclick="abrir_modal()">
+                                        <button type="button" class="btn btn-outline-primary dnuevo"
+                                            onclick="abrir_modal()">
                                             <i class="bx bxs-add-to-queue"></i> Nuevo Foda</button>
                                     </div>
                                 </div>
@@ -155,7 +158,8 @@
                                 <div class="others-title d-flex align-items-center">
                                     <h3>AMENAZAS</h3>
                                     <div class=" ms-auto position-relative">
-                                        <button type="button" class="btn btn-outline-primary" onclick="abrir_modal()">
+                                        <button type="button" class="btn btn-outline-primary dnuevo"
+                                            onclick="abrir_modal()">
                                             <i class="bx bxs-add-to-queue"></i> Nuevo Foda</button>
                                     </div>
                                 </div>
@@ -200,18 +204,24 @@
     <div class="modal zoom" id="nueva_fodaC" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
+            <div class="modal-content" id="dmodal">
                 <div class="modal-header">
                     <h3 class="modal-title fs-5">CREAR FODA</h3>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        onclick="cerrar_modal_foda_c()"></button>
+                    <div>
+                        <button type="button" class="bg-transparent" onclick="verTutorial(1)">
+                            <i class='ri-eye-fill'></i>
+                            Ver tutorial del formulario &nbsp;
+                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="cerrar_modal_foda_c()"></button>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <form id="form_foda" method="post" autocomplete="off">
                         <input type="hidden" name="gestion_id" value="{{ $gestiones->id }}">
                         <div class="row">
-                            <div class="mb-3">
+                            <div class="mb-3" id="dfoda">
                                 <label for="tipo_foda" class="form-label">Seleccione tipo de FODA</label>
                                 <select name="tipo_foda" id="tipo_foda" class="form-select form-control"
                                     onchange="seleccionar_foda_c(this.value)">
@@ -227,7 +237,7 @@
                                     <p> NOTA : Se podra agregar maximo de {{ maximo_agregar() }} registros a la vez!</p>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" id="dagregar">
                                 <label id="tipo_seleccionado">DESCRIPCIÓN DE : </label>
                                 <div id="repetir_foda">
                                     <div class="form-group">
@@ -260,10 +270,12 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
-                        onclick="cerrar_modal_foda_c()">Cerrar</button>
-                    <button type="button" class="btn btn-outline-primary btn-sm" id="btn_guardar_fodaC"> <i
-                            class="bx bxs-save" id="icono_rodry"></i> Guardar FODA</button>
+                    <div id="dacc">
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
+                            onclick="cerrar_modal_foda_c()">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="btn_guardar_fodaC"> <i
+                                class="bx bxs-save" id="icono_rodry"></i> Guardar FODA</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -307,13 +319,13 @@
 @section('scripts')
     <script>
         /* setTimeout(() => {
-                                                    document.getElementById('primero').style.display = 'none';
-                                                    document.getElementById('segundo').style.display = 'block';
-                                                }, 3000);
+                                                                                                                                                                document.getElementById('primero').style.display = 'none';
+                                                                                                                                                                document.getElementById('segundo').style.display = 'block';
+                                                                                                                                                            }, 3000);
 
-                                                function btn_recargarPagina(){
-                                                    window.location='';
-                                                } */
+                                                                                                                                                            function btn_recargarPagina(){
+                                                                                                                                                                window.location='';
+                                                                                                                                                            } */
 
         repetir_x('#repetir_foda');
         //para abrir modal
@@ -604,7 +616,109 @@
         });
 
         function eliminar_fodac(id) {
-            console.log('prgil');
+            Swal.fire({
+                title: "¿Esta seguro de eliminar el registro?",
+                text: "Esta accion no se puede deshacer",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, eliminar",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('fodac_foda_eliminar') }}",
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: id
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            location.reload()
+                        },
+                        error: function(err) {
+                            // console.log(err);
+                            alert('A ocurrido un error al procesar la petición.');
+                        }
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('#btn-driver').css('visibility', 'visible')
+        });
+
+        function verTutorial(op = 0) {
+            if (op == 1) {
+                driverObj.setSteps([{
+                    element: '#dmodal',
+                    popover: {
+                        title: 'Modal de registros FODA',
+                        description: 'Formulario de registro del FODA'
+                    }
+                }, {
+                    element: '#dfoda',
+                    popover: {
+                        title: 'Selección de opción del FODA',
+                        description: 'Los nuevos registros se agregan segun la opción seleccionada'
+                    }
+                }, {
+                    element: '#alerta_nota',
+                    popover: {
+                        title: 'Información',
+                        description: 'Agregar hasta maximo 10 registros a la vez'
+                    }
+                }, {
+                    element: '#dagregar',
+                    popover: {
+                        title: 'Boton para agregar un item',
+                        description: 'Crea un espacio para el nuevo registro'
+                    }
+                }, {
+                    element: '#dacc',
+                    popover: {
+                        title: 'Boton de acciones',
+                        description: 'Boton de guardar los registros o cerrar el formulario'
+                    }
+                }])
+            } else {
+                driverObj.setSteps([{
+                    element: '#dmodulo',
+                    popover: {
+                        title: 'Llenado del Formulario N°3',
+                        description: 'Aca se lista los registros FODA'
+                    }
+                }, {
+                    element: '#dnav',
+                    popover: {
+                        title: 'Opciones del FODA',
+                        description: 'Para navegar entre opciones del FODA'
+                    }
+                }, {
+                    element: '#dinfo',
+                    popover: {
+                        title: 'Registros FODA',
+                        description: 'Lista de los registros por la opcion del FODA'
+                    }
+                }, {
+                    element: '.dnuevo',
+                    popover: {
+                        title: 'Boton para agregar un nuevo registro',
+                        description: 'Abre el formulario para nuevos registros'
+                    }
+                }, {
+                    element: '#dpdf',
+                    popover: {
+                        title: 'Boton para generar el PDF',
+                        description: 'Genera un PDF del formulario N°3'
+                    }
+                }])
+            }
+
+            driverObj.drive()
         }
     </script>
 @endsection

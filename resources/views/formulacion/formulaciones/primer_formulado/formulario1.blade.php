@@ -21,7 +21,7 @@
     </div>
 
 
-    <div class="default-table-area">
+    <div class="default-table-area" id="dmodulo">
         <div class="container-fluid">
             <div class="card-box-style">
                 <div class="others-title d-flex align-items-center">
@@ -32,14 +32,14 @@
                             <input type="hidden" name="id_carreraunidad" value="{{ $carrera_unidad->id }}">
                             <input type="hidden" name="id_configuracion" value="{{ $id_configuracion_formulado }}">
                             <input type="hidden" name="id_gestion" value="{{ $gestiones->id }}">
-                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal" id="dpdf"
                                 data-bs-target="#nuevo_carreraUnidadArea"><i class="ri-file-pdf-line"></i> Imprimir FORM.
                                 N°1</button>
                         </form>
                     </div>
                 </div>
                 @if ($resultado == 1)
-                    <div class="row">
+                    <div class="row" id="dinfo">
                         <div class="mb-3 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                             <fieldset>
                                 <legend>Fecha realizado</legend>
@@ -85,14 +85,14 @@
                                 <legend>Formularios</legend>
 
                                 <div class="container_rodry">
-                                    <button class="card2" href="#"
+                                    <button class="card2" href="#" id="df1"
                                         onclick="editar_formulario1('{{ $formulario1->id }}', '{{ $gestion->id }}')">
                                         <h3 id="titulo_h3">FORM. Nº 1</h3>
                                         <div class="go-corner-edit" href="#">
                                             <div class="go-arrow"><i class="ri-edit-2-line"></i></div>
                                         </div>
                                     </button>
-                                    <a class="card2"
+                                    <a class="card2" id="df2"
                                         href="{{ route('poa_formulario2', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($formulado_tipo->id)]) }}">
                                         <h3 id="titulo_h3">FORM. Nº 2</h3>
                                         <div class="go-corner" href="#">
@@ -100,7 +100,7 @@
                                         </div>
                                     </a>
 
-                                    <a class="card2"
+                                    <a class="card2" id="df3"
                                         href="{{ route('fodac_listado', ['id_gestiones' => encriptar($gestiones->id), 'id_formulario1' => encriptar($formulario1->id)]) }}">
                                         <h3 id="titulo_h3">FORM. Nº 3</h3>
                                         <div class="go-corner" href="#">
@@ -108,7 +108,7 @@
                                         </div>
                                     </a>
 
-                                    <a class="card2"
+                                    <a class="card2" id="df4"
                                         href="{{ route('poa_form4', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($formulado_tipo->id)]) }}">
                                         <h3 id="titulo_h3">FORM. Nº 4</h3>
                                         <div class="go-corner" href="#">
@@ -116,7 +116,7 @@
                                         </div>
                                     </a>
 
-                                    <form action="{{ route('pdf_form5') }}" method="post" target="_blank">
+                                    <form action="{{ route('pdf_form5') }}" method="post" target="_blank" id="df5">
                                         @csrf
                                         <input type="hidden" name="id_carreraunidad"
                                             value="{{ $formulario1->unidadCarrera_id }}">
@@ -132,7 +132,8 @@
                                         </button>
                                     </form>
 
-                                    <form action="{{ route('pdf_form6') }}" method="post" target="_blank">
+                                    <form action="{{ route('pdf_form6') }}" method="post" target="_blank"
+                                        id="df6">
                                         @csrf
                                         <input type="hidden" name="id_carreraunidad"
                                             value="{{ $formulario1->unidadCarrera_id }}">
@@ -157,7 +158,7 @@
                             <input type="hidden" name="configuracionFormulado_id" value="{{ $configuracion_poa->id }}">
                             <input type="hidden" name="gestiones_id" value="{{ $gestiones->id }}">
                             <div class="mb-3 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <fieldset>
+                                <fieldset id="drector">
                                     <legend>Ingrese nombre de la Maxima Autoridad (RECTOR)</legend>
                                     <input type="text" name="maxima_autoridad" id="maxima_autoridad"
                                         class="form-control"
@@ -166,7 +167,7 @@
                                 </fieldset>
                             </div>
                             <div class="mb-3 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <fieldset>
+                                <fieldset id="dareas">
                                     <legend>Seleccione las Áreas estratégicas a usar</legend>
                                     <table class="table text-justify">
                                         <tbody>
@@ -193,7 +194,7 @@
                         </form>
 
                         <div class="text-center">
-                            <button type="button" class="btn btn-outline-primary btn-sm"
+                            <button type="button" class="btn btn-outline-primary btn-sm dguardar"
                                 id="btn_guardarPrimerFormulario"> <i class="bx bxs-save" id="icono_rodry"></i> Guardar
                                 primer formulario</button>
                         </div>
@@ -228,6 +229,10 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            $('#btn-driver').css('visibility', 'visible')
+        });
+
         $(document).on('click', '#btn_guardarPrimerFormulario', (e) => {
             e.preventDefault();
             let datos = new FormData(document.getElementById('form_primerFormulario'));
@@ -280,7 +285,6 @@
                     toastr["error"]("Se cancelo!");
                 }
             });
-
         });
 
         //para vaciar errores
@@ -337,5 +341,97 @@
                 }
             });
         });
+
+        function verTutorial() {
+            if ('{{ $resultado }}' == 1) {
+                driverObj.setSteps([{
+                        element: '#dmodulo',
+                        popover: {
+                            title: 'Llenado del Formulario N°1',
+                            description: 'Aca se muestra la configuracion del formulario N°1.'
+                        }
+                    }, {
+                        element: '#dinfo',
+                        popover: {
+                            title: 'Información del formulario N°1',
+                            description: 'Información especifica del Formulario N°1'
+                        }
+                    },
+                    {
+                        element: '#df1',
+                        popover: {
+                            title: 'Editar formulario N°1',
+                            description: 'Haga click para editar la información del Formulario N°1 actual'
+                        },
+                    },
+                    {
+                        element: '#df2',
+                        popover: {
+                            title: 'Formulario N°2',
+                            description: 'Dirigirse al Formulario N°2'
+                        },
+                    },
+                    {
+                        element: '#df3',
+                        popover: {
+                            title: 'Formulario N°3',
+                            description: 'Dirigirse al Formulario N°3'
+                        },
+                    },
+                    {
+                        element: '#df4',
+                        popover: {
+                            title: 'Formulario N°4',
+                            description: 'Dirigirse al Formulario N°4'
+                        },
+                    },
+                    {
+                        element: '#df5',
+                        popover: {
+                            title: 'PDF del Formulario N°5',
+                            description: 'Para generar un PDF del Formulario N°5, resultado de la formulación del Formulario N°4'
+                        },
+                    },
+                    {
+                        element: '#df6',
+                        popover: {
+                            title: 'PDF del Formulario N°6 o Resumen',
+                            description: 'Para generar un PDF resumen de la formulación actual del POA'
+                        },
+                    },
+                ])
+            } else {
+                driverObj.setSteps([{
+                        element: '#dmodulo',
+                        popover: {
+                            title: 'Llenado del Formulario N°1',
+                            description: 'Aca se muestra los primeros campos a llenar como configuracion del formulario N°1.'
+                        }
+                    }, {
+                        element: '#drector',
+                        popover: {
+                            title: 'Nombre de la Maxima Autoridad',
+                            description: 'Debe ingresar el nombre del Rector de la gestión para especificar en el formulado'
+                        }
+                    },
+                    {
+                        element: '#dareas',
+                        popover: {
+                            title: 'Areas estrategicas del formulado',
+                            description: 'Debe seleccionar las opciones que son respectivos a su area/carrera/unidad'
+                        },
+                    },
+                    {
+                        element: '.dguardar',
+                        popover: {
+                            title: 'Guardar información del formulado',
+                            description: 'Por ultimo para guardar debe hacer click en el boton para guardar y finalizar el formulado.'
+                        }
+                    },
+                ])
+            }
+
+            driverObj.drive()
+        }
     </script>
 @endsection

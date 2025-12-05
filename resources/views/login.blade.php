@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel='stylesheet' type='text/css' media='screen' href="{{ asset('login_front/main.css') }}">
     <script src="{{ asset('login_front/main.js') }}"></script>
-
+    <link rel="stylesheet" href="{{ asset('plantilla_admin/css/driver.css') }}" type="text/css">
     {{-- <link rel="stylesheet" href="{{ asset('rodry/estilo_capcha.css') }}"> --}}
 </head>
 
@@ -133,7 +133,7 @@
         });
 
 
-        $(document).on("ready", inicio());
+        // $(document).on("ready", inicio());
 
         // function inicio() {
         //     $.get("{{ route('captcha') }}", function(data) {

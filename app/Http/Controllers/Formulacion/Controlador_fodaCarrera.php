@@ -161,4 +161,17 @@ class Controlador_fodaCarrera extends Controller
         }
         return response()->json($data, 200);
     }
+    //para guardar lo editado
+    public function foda_eliminar(Request $request)
+    {
+        $id = $request->input('id');
+
+        $foda = Foda_carrerasUnidad::findOrFail($id);
+        $foda->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => ':D',
+        ], 200);
+    }
 }

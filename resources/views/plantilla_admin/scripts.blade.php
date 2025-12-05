@@ -28,6 +28,7 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 <script src="{{ asset('plantilla_admin/rodry/select2/js/select2.min.js') }}"></script>
 <script src="{{ asset('plantilla_admin/js/editor.js') }}"></script>
+<script src="{{ asset('plantilla_admin/js/driver.js.life.js') }}"></script>
 <script>
     //para el separador de miles
     $(".monto_number").on({
@@ -440,4 +441,18 @@
         const año = fecha.getFullYear();
         return `${dia}-${mes}-${año}`;
     }
+
+    const driver = window.driver.js.driver;
+    const driverObj = driver({
+        showProgress: true,
+        showButtons: ['next', 'previous'],
+        allowClose: false,
+        nextBtnText: 'Siguiente',
+        prevBtnText: 'Atras',
+        doneBtnText: 'Finalizar',
+    })
+
+    $(document).ready(function() {
+        $('#btn-driver').css('visibility', 'hidden');
+    });
 </script>

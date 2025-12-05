@@ -19,21 +19,21 @@
 
 
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="dmodulo">
         <div class="card-box-style">
             <div class="others-title d-flex align-items-center">
-                <a class="btn btn-outline-secondary"
+                <a class="btn btn-outline-secondary" id="dhome"
                     href="{{ route('poa_formulacionPOA', [encriptar($configuracion_formulado->id), encriptar($gestiones->id)]) }}">
                     <i class="bx bx-arrow-back"></i>
                     Inicio
                 </a>
                 <h3></h3>
                 <div class=" ms-auto position-relative">
-                    <button type="button" class="btn btn-outline-primary" onclick="modal_nueveAEart()"> <i
+                    <button type="button" class="btn btn-outline-primary" id="dnuevo" onclick="modal_nueveAEart()"> <i
                             class="bx bxs-add-to-queue"></i> Nuevo </button>
                 </div>
             </div>
-            <div id="table-responsive">
+            <div id="dinfo">
                 <table class="table table-striped table-hover" id="debilidad_tabla" style="width: 100%">
                     <thead class="text-center">
                         <tr>
@@ -94,27 +94,29 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <a class="me-2"
-                    href="{{ route('poa_formulario2', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($tipo_formulado->id)]) }}">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bx bx-arrow-to-left"></i>
-                        Form N°2
-                    </button>
-                </a>
-                <a class="me-2"
-                    href="{{ route('fodac_listado', ['id_gestiones' => encriptar($gestiones->id), 'id_formulario1' => encriptar($formulario1->id)]) }}">
-                    <button type="submit" class="btn btn-warning">
-                        Form N°3
-                        <i class="bx bx-arrow-to-right"></i>
-                    </button>
-                </a>
-                <a class=""
-                    href="{{ route('poa_form4', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($tipo_formulado->id)]) }}">
-                    <button type="submit" class="btn btn-primary">
-                        Form N°4
-                        <i class="bx bx-arrow-to-right"></i>
-                    </button>
-                </a>
+                <div id="dnav">
+                    <a class="me-2"
+                        href="{{ route('poa_formulario2', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($tipo_formulado->id)]) }}">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bx bx-arrow-to-left"></i>
+                            Form N°2
+                        </button>
+                    </a>
+                    <a class="me-2"
+                        href="{{ route('fodac_listado', ['id_gestiones' => encriptar($gestiones->id), 'id_formulario1' => encriptar($formulario1->id)]) }}">
+                        <button type="submit" class="btn btn-warning">
+                            Form N°3
+                            <i class="bx bx-arrow-to-right"></i>
+                        </button>
+                    </a>
+                    <a class=""
+                        href="{{ route('poa_form4', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($tipo_formulado->id)]) }}">
+                        <button type="submit" class="btn btn-primary">
+                            Form N°4
+                            <i class="bx bx-arrow-to-right"></i>
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -122,12 +124,18 @@
     {{-- MODAL NUEVO --}}
     <div class="modal slide" id="nuevo_AEarticulacion" data-bs-backdrop="static" data-bs-keyboard="false"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl  modal-dialog-scrollable">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" id="dmodal1">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title fs-5">NUEVO</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        onclick="cerrar_modalAE()"></button>
+                    <div>
+                        <button type="button" class="bg-transparent" onclick="verTutorial(1)">
+                            <i class='ri-eye-fill'></i>
+                            Ver tutorial del formulario &nbsp;
+                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="cerrar_modalAE()"></button>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <form id="form_EAarticulacion" method="POST" autocomplete="off">
@@ -137,7 +145,7 @@
                         <input type="hidden" name="gestiones_id" value="{{ $gestiones->id }}">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 py-2">
-                                <fieldset>
+                                <fieldset id="dcodigo1">
                                     <legend>CODIGO</legend>
                                     <div class="mb-2">
                                         <label for="codigo" class="col-form-label">Ingrese código</label>
@@ -149,7 +157,7 @@
                                 </fieldset>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 py-2">
-                                <fieldset>
+                                <fieldset id="dpdes1">
                                     <legend>PLAN DE DESARROLLO ESTRATÉGICO Y SOCIAL (PDES)</legend>
                                     <div class="row">
                                         <div class="mb-3">
@@ -165,7 +173,7 @@
                             </div>
                         </div>
 
-                        <fieldset>
+                        <fieldset id="dpdu1">
                             <legend>PLAN DE DESARROLLO UNIVERSITARIO (PDU)</legend>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2">
@@ -200,7 +208,7 @@
                             </div>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset id="dpei1">
                             <legend>PLAN ESTRATÉGICO INSTITUCIONAL (PEI)</legend>
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
@@ -249,7 +257,7 @@
                             </div>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset id="dind1">
                             <legend>INDICADOR ESTRATÉGICO</legend>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
@@ -272,10 +280,12 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
-                        onclick="cerrar_modalAE()">Cerrar</button>
-                    <button type="button" class="btn btn-outline-primary btn-sm" id="btn_guardarAE"
-                        @disabled(true)> <i class="bx bxs-save" id="icono_rodry"></i> Guardar</button>
+                    <div id="dnav1">
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
+                            onclick="cerrar_modalAE()">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="btn_guardarAE"
+                            @disabled(true)> <i class="bx bxs-save" id="icono_rodry"></i> Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -285,19 +295,25 @@
     {{-- MODAL EDITAR --}}
     <div class="modal slide" id="editar_AEarticulacion" data-bs-backdrop="static" data-bs-keyboard="false"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl  modal-dialog-scrollable">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" id="dmodal2">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title fs-5">EDITAR</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        onclick="cerrarModalAE()"></button>
+                    <div>
+                        <button type="button" class="bg-transparent" onclick="verTutorial(2)">
+                            <i class='ri-eye-fill'></i>
+                            Ver tutorial del formulario &nbsp;
+                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="cerrarModalAE()"></button>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <form id="form_EAarticulacionEditado" method="POST" autocomplete="off">
                         <input type="hidden" name="formulario2Edi_id" id="formulario2Edi_id">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 py-2">
-                                <fieldset>
+                                <fieldset id="dcodigo2">
                                     <legend>CODIGO</legend>
                                     <div class="mb-2">
                                         <label for="codigo_" class="col-form-label">Ingrese código</label>
@@ -309,7 +325,7 @@
                                 </fieldset>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 py-2">
-                                <fieldset>
+                                <fieldset id="dpdes2">
                                     <legend>PLAN DE DESARROLLO ESTRATÉGICO Y SOCIAL (PDES)</legend>
                                     <div class="row">
                                         <div class="mb-3">
@@ -325,7 +341,7 @@
                             </div>
                         </div>
 
-                        <fieldset>
+                        <fieldset id="dpdu2">
                             <legend>PLAN DE DESARROLLO UNIVERSITARIO (PDU)</legend>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2">
@@ -354,7 +370,7 @@
                             </div>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset id="dpei2">
                             <legend>PLAN ESTRATÉGICO INSTITUCIONAL (PEI)</legend>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2">
@@ -395,7 +411,7 @@
                             </div>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset id="dind2">
                             <legend>INDICADOR ESTRATÉGICO</legend>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
@@ -418,10 +434,12 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
-                        onclick="cerrarModalAE()">Cerrar</button>
-                    <button type="button" class="btn btn-outline-primary btn-sm" id="btn_guardarAEditado"> <i
-                            class="bx bxs-save" id="icono_rodry"></i> Guardar</button>
+                    <div id="dnav2">
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
+                            onclick="cerrarModalAE()">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="btn_guardarAEditado"> <i
+                                class="bx bxs-save" id="icono_rodry"></i> Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -430,6 +448,10 @@
 @endsection
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            $('#btn-driver').css('visibility', 'visible')
+        });
+
         select2_rodry('#nuevo_AEarticulacion');
 
         function modal_nueveAEart() {
@@ -877,5 +899,87 @@
                 }
             });
         });
+
+        function verTutorial(op = 0) {
+            if (op == 1 || op == 2) {
+                driverObj.setSteps([{
+                    element: '#dmodal' + op,
+                    popover: {
+                        title: 'Modal de registro de Formulario N°2',
+                        description: 'Ventana para crear/editar un registro del Formulario N°2'
+                    }
+                }, {
+                    element: '#dcodigo' + op,
+                    popover: {
+                        title: 'Codigo del registro',
+                        description: 'Ingrese el codigo respectivo al registro del Formulario N°2'
+                    }
+                }, {
+                    element: '#dpdes' + op,
+                    popover: {
+                        title: 'Plan de Desarrollo Estratégico y Social (PDES)',
+                        description: 'Información del eje establecido de la gestión'
+                    }
+                }, {
+                    element: '#dpdu' + op,
+                    popover: {
+                        title: 'Plan de Desarrollo Universitario',
+                        description: 'Selecciona el objetivo estratégico, la Politica de Desarrollo es automatica'
+                    }
+                }, {
+                    element: '#dpei' + op,
+                    popover: {
+                        title: 'Plan Estratégico Institucional',
+                        description: 'Selecciona el objetivo estratégico institucional, el objetivo estratégico (SUB) y la politica institucional son automaticas'
+                    }
+                }, {
+                    element: '#dind' + op,
+                    popover: {
+                        title: 'Indicador estratégico',
+                        description: 'Selecciona el pla estrategico correspondiente al registro'
+                    }
+                }, {
+                    element: '#dnav' + op,
+                    popover: {
+                        title: 'Botones de acciones',
+                        description: 'Guardar o cerrar el formulario'
+                    }
+                }])
+            } else {
+                driverObj.setSteps([{
+                    element: '#dmodulo',
+                    popover: {
+                        title: 'Llenado del Formulario N°2',
+                        description: 'Aca se lista las areas estratégicas correspondientes para asignas las politicas y objetivos'
+                    }
+                }, {
+                    element: '#dinfo',
+                    popover: {
+                        title: 'Tabla de areas estrategicas',
+                        description: 'Lista de las areas estratégicas para asignar las politicas y objetivos'
+                    }
+                }, {
+                    element: '#dnuevo',
+                    popover: {
+                        title: 'Boton para crear un nuevo registro',
+                        description: 'Crear nuevo registro del Formulario N°2'
+                    }
+                }, {
+                    element: '#dnav',
+                    popover: {
+                        title: 'Botones de navegación',
+                        description: 'Para navegar entre formularios (siguiente y anterior)'
+                    }
+                }, {
+                    element: '#dhome',
+                    popover: {
+                        title: 'Boton de inicio',
+                        description: 'Para navegar al inicio del Formulario N°1'
+                    }
+                }])
+            }
+
+            driverObj.drive()
+        }
     </script>
 @endsection

@@ -40,6 +40,12 @@
                 </div>
 
                 <div class="header-right-content d-flex align-items-center">
+                    <div class="header-right-option" id="btn-driver">
+                        <button class="link bg-transparent d-flex text-white" onclick="verTutorial()">
+                            <i class='ri-eye-fill'></i>
+                            &nbsp;Ver tutorial del modulo
+                        </button>
+                    </div>
                     <div class="header-right-option">
                         <a href="#" class="dropdown-item fullscreen-btn" id="fullscreen-button">
                             <img src="{{ asset('plantilla_admin/images/icon/maximize.svg') }}" alt="maximize">
@@ -341,7 +347,8 @@
                                 <div class="dropdown-wrap">
                                     <ul class="profile-nav p-0 pt-3">
                                         <li class="nav-item">
-                                            <a href="{{ asset('manuales/usuario.pdf') }}" class="nav-link" target="_blank">
+                                            <a href="{{ asset('manuales/usuario.pdf') }}" class="nav-link"
+                                                target="_blank">
                                                 <i class="ri-file-pdf-line"></i>
                                                 <span>Manual de usuario</span>
                                             </a>
@@ -354,7 +361,8 @@
                                 <div class="dropdown-wrap">
                                     <ul class="profile-nav p-0 pt-3">
                                         <li class="nav-item">
-                                            <a href="{{ asset('manuales/tecnico.pdf') }}" class="nav-link" target="_blank">
+                                            <a href="{{ asset('manuales/tecnico.pdf') }}" class="nav-link"
+                                                target="_blank">
                                                 <i class="ri-file-pdf-fill"></i>
                                                 <span>Manual de usuario (técnico/administrador)</span>
                                             </a>
@@ -370,7 +378,8 @@
                                             <i class="ri-login-circle-line"></i>
                                             <span>Cerrar Sesión</span>
                                         </a>
-                                        <form id="form_salir" method="post" action="{{ route('salir') }}">@csrf</form>
+                                        <form id="form_salir" method="post" action="{{ route('salir') }}">@csrf
+                                        </form>
                                     </li>
                                 </ul>
                             </div>

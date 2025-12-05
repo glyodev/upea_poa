@@ -16,10 +16,10 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="dmodulo">
         <div class="card-box-style">
             <div class="others-title d-flex align-items-center">
-                <a class="btn btn-outline-secondary"
+                <a class="btn btn-outline-secondary" id="dhome"
                     href="{{ route('poa_formulacionPOA', [encriptar($configuracion_formulado->id), encriptar($gestiones->id)]) }}">
                     <i class="bx bx-arrow-back"></i>
                     Inicio
@@ -31,12 +31,12 @@
                         <input type="hidden" name="id_carreraunidad" value="{{ $carrera_unidad->id }}">
                         <input type="hidden" name="id_configuracion" value="{{ $configuracion_formulado->id }}">
                         <input type="hidden" name="id_gestion" value="{{ $gestiones->id }}">
-                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" id="dpdf"
                             data-bs-target="#nuevo_carreraUnidadArea"><i class="ri-file-pdf-line"></i> Imprimir PDF</button>
                     </form>
                 </div>
             </div>
-            <div id="table-responsive">
+            <div id="dinfo">
                 <table class="table table-hover" id="debilidad_tabla" style="width: 100%">
                     <thead>
                         <tr>
@@ -52,7 +52,7 @@
                                 <td>{{ $lis->descripcion }}</td>
                                 <td>
                                     <a href="{{ route('poa_formAreaEstrategicas', ['formulario1_id' => encriptar($formulario1->id), 'areaEstrategica_id' => encriptar($lis->id)]) }}"
-                                        class="btn btn-outline-primary">Ingresar</a>
+                                        class="btn btn-outline-primary dboton">Ingresar</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -61,23 +61,72 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <a class="me-2"
-                    href="{{ route('fodac_listado', ['id_gestiones' => encriptar($gestiones->id), 'id_formulario1' => encriptar($formulario1->id)]) }}">
-                    <button href="submit" class="btn btn-warning">
-                        Form N°3
-                        <i class="bx bx-arrow-to-right"></i>
-                    </button>
-                </a>
-                <a class=""
-                    href="{{ route('poa_form4', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($formulado_tipo->id)]) }}">
-                    <button type="submit" class="btn btn-primary">
-                        Form N°4
-                        <i class="bx bx-arrow-to-right"></i>
-                    </button>
-                </a>
+                <div id="dnav">
+                    <a class="me-2"
+                        href="{{ route('fodac_listado', ['id_gestiones' => encriptar($gestiones->id), 'id_formulario1' => encriptar($formulario1->id)]) }}">
+                        <button href="submit" class="btn btn-warning">
+                            Form N°3
+                            <i class="bx bx-arrow-to-right"></i>
+                        </button>
+                    </a>
+                    <a class=""
+                        href="{{ route('poa_form4', ['formulario1_id' => encriptar($formulario1->id), 'formuladoTipo_id' => encriptar($formulado_tipo->id)]) }}">
+                        <button type="submit" class="btn btn-primary">
+                            Form N°4
+                            <i class="bx bx-arrow-to-right"></i>
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+@endsection
 
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#btn-driver').css('visibility', 'visible')
+        });
 
+        function verTutorial() {
+            driverObj.setSteps([{
+                element: '#dmodulo',
+                popover: {
+                    title: 'Llenado del Formulario N°2',
+                    description: 'Aca se lista las areas estratégicas correspondientes para asignas las politicas y objetivos'
+                }
+            }, {
+                element: '#dinfo',
+                popover: {
+                    title: 'Tabla de areas estrategicas',
+                    description: 'Lista de las areas estratégicas para asignar las politicas y objetivos'
+                }
+            }, {
+                element: '.dboton',
+                popover: {
+                    title: 'Boton para ingresar',
+                    description: 'Ingresa al area estrategica para su respectiva formulación'
+                }
+            }, {
+                element: '#dpdf',
+                popover: {
+                    title: 'Boton para generar el PDF',
+                    description: 'Genera un PDF del formulario N°2'
+                }
+            }, {
+                element: '#dnav',
+                popover: {
+                    title: 'Botones de navegación',
+                    description: 'Para navegar entre formularios (siguiente y anterior)'
+                }
+            }, {
+                element: '#dhome',
+                popover: {
+                    title: 'Boton de inicio',
+                    description: 'Para navegar al inicio del Formulario N°1'
+                }
+            }])
+            driverObj.drive()
+        }
+    </script>
 @endsection

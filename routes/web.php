@@ -529,6 +529,7 @@ Route::prefix('/poa')->middleware(['autenticados'])->group(function () {
         Route::post('listarFoda_c', 'listarFoda_c')->name('fodac_listarFoda');
         Route::post('editarFoda_c', 'editarFoda_c')->name('fodac_editarFoda');
         Route::post('editarFoda_guardar', 'editarFoda_guardar')->name('fodac_editarFoda_guardar');
+        Route::post('foda_eliminar', 'foda_eliminar')->name('fodac_foda_eliminar');
     });
     /**
      * Fin para el controlador de foda de las carreras y unidad

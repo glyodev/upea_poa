@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="dmodulo">
         <div class="card-box-style">
             <div class="others-title d-flex align-items-center">
                 <a class="btn btn-outline-secondary"
@@ -31,12 +31,12 @@
                         <input type="hidden" name="id_carreraunidad" value="{{ $carrera_unidad->id }}">
                         <input type="hidden" name="id_configuracion" value="{{ $configuracion_formulado->id }}">
                         <input type="hidden" name="id_gestion" value="{{ $gestiones->id }}">
-                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" id="dpdf"
                             data-bs-target="#nuevo_carreraUnidadArea"><i class="ri-file-pdf-line"></i> Imprimir PDF</button>
                     </form>
                 </div>
             </div>
-            <div id="table-responsive">
+            <div id="dinfo">
                 <table class="table table-hover" id="debilidad_tabla" style="width: 100%">
                     <thead>
                         <tr>
@@ -78,5 +78,42 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#btn-driver').css('visibility', 'visible')
+        });
+
+        function verTutorial() {
+            driverObj.setSteps([{
+                element: '#dmodulo',
+                popover: {
+                    title: 'Llenado del Formulario N°2',
+                    description: 'Aca se lista las areas estratégicas correspondientes para asignas las politicas y objetivos'
+                }
+            }, {
+                element: '#dinfo',
+                popover: {
+                    title: 'Tabla de areas estrategicas',
+                    description: 'Lista de las areas estratégicas para asignar las politicas y objetivos'
+                }
+            }, {
+                element: '.dboton',
+                popover: {
+                    title: 'Boton para ingresar',
+                    description: 'Ingresa al area estrategica para su respectiva formulación'
+                }
+            }, {
+                element: '#dpdf',
+                popover: {
+                    title: 'Boton para generar el PDF',
+                    description: 'Genera un PDF del formulario N°2'
+                }
+            }])
+
+            driverObj.drive()
+        }
+    </script>
 @endsection
