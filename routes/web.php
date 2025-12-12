@@ -622,6 +622,9 @@ Route::prefix('/poa')->middleware(['autenticados'])->group(function () {
         });
     });
 
+    /**
+     * REPORTES PDF FUT - MOT
+     */
     Route::prefix('reporte')->controller(ControladorReportePdf::class)->group(function () {
         Route::get('/', 'index')->name('getUnidades');
         Route::post('/carreras', 'obtenerCarreras')->name('obtenerCarreras');
@@ -637,7 +640,7 @@ Route::prefix('/poa')->middleware(['autenticados'])->group(function () {
     });
 
     /**
-     * GRAFICAS
+     * GRAFICOS ESTADISTICOS Y REPORTES
      */
     Route::controller(Reportes_graficas_controlador::class)->group(function () {
         Route::post('ver_gestion_gastos', 'ver_gestion_gastos')->name('ver_gestion_gastos');
